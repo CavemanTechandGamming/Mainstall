@@ -594,9 +594,9 @@ class MainstallApp:
                 "Mainstall\n"
                 "Professional Windows Maintenance & Software Installation Tool\n\n"
                 "Version: Beta 1.0.0.0\n"
-                "Author: Caveman\n"
+                "Author: CavemanTechandGamming\n"
                 "License: MIT\n\n"
-                "For support or updates, visit: https://github.com/your-repo"
+                "For support or updates, visit: https://github.com/CavemanTechandGamming/Mainstall"
             ),
             font=("Segoe UI", 12),
             background="#1e1e1e",

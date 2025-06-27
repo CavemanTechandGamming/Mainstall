@@ -73,9 +73,9 @@ A professional-grade Windows desktop application for system maintenance and soft
 
 ### About
 - Version: Beta 1.0.0.0
-- Author: Caveman
+- Author: CavemanTechandGamming
 - License: MIT
-- Support/updates link
+- Support/updates: [https://github.com/CavemanTechandGamming/Mainstall](https://github.com/CavemanTechandGamming/Mainstall)
 
 ## Requirements
 
@@ -268,7 +268,7 @@ For issues, feature requests, or questions:
 
 ## Support & Feedback
 
-If you find any bugs, issues, or have suggestions, **please don't hesitate to submit a ticket or open an issue on the project's GitHub page.**
+If you find any bugs, issues, or have suggestions, **please don't hesitate to submit a ticket or open an issue on the project's GitHub page**: [https://github.com/CavemanTechandGamming/Mainstall](https://github.com/CavemanTechandGamming/Mainstall)
 
 Your feedback helps make Mainstall better for everyone!
 
