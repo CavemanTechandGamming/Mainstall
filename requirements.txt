@@ -1,0 +1,18 @@
+# Mainstall Dependencies
+# Core dependencies for the Windows desktop application
+
+# No external dependencies required - uses only Python standard library modules:
+# - tkinter (GUI framework)
+# - ctypes (Windows API access)
+# - subprocess (command execution)
+# - sys, os (system operations)
+# - threading (background operations)
+# - typing (type hints)
+
+# For packaging with PyInstaller (optional):
+# pyinstaller>=5.0.0
+
+# For development and testing (optional):
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=5.0.0 
