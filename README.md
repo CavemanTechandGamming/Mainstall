@@ -30,12 +30,12 @@ By using this application, you acknowledge that you understand these risks and a
 - Custom application icon with proper Windows integration
 
 ### 🛠 Maintenance Tab
+- **Create Restore Point**: Create a Windows System Restore Point before making changes
 - **Winget Upgrade All**: Update all installed packages
 - **SFC Scan**: System File Checker for Windows integrity
 - **DISM Commands**: ScanHealth, CheckHealth, and RestoreHealth
 - **Check Disk**: Disk integrity check for C: drive
 - **Deep Disk Cleanup**: Comprehensive cleanup including DISM, Disk Cleanup, and temp files
-- **Run All Maintenance**: Execute all maintenance tasks in sequence
 
 ### 📦 Installers Tab (80+ Software Options)
 
@@ -66,10 +66,19 @@ By using this application, you acknowledge that you understand these risks and a
 ## Screenshots
 
 ### Maintenance Tab
-![Mainstall Maintenance Tab](./assets/screenshot_maintenance.png)
+![Maintenance Tab](assets/screenshot_maintenance.png)
 
 ### Installers Tab
-![Mainstall Installers Tab](./assets/screenshot_installers.png)
+![Installers Tab](assets/screenshot_installers.png)
+
+### Quick Fixes Tab
+![Quick Fixes Tab](assets/screenshot_quick_fixes.png)
+
+### System Settings Tab
+![System Settings Tab](assets/screenshot_system_settings.png)
+
+### About Tab
+![About Tab](assets/screenshot_about.png)
 
 ## Application Overview
 
@@ -84,8 +93,20 @@ By using this application, you acknowledge that you understand these risks and a
 - Utilizes winget for silent, official software installations
 - Comprehensive tooltips provide detailed information for each application
 
+### Quick Fixes Tab
+- Common troubleshooting commands for quick system fixes
+- Includes DNS cache flush, Windows Explorer restart, Store cache clear, and more
+- Each command opens in a visible PowerShell window for transparency
+- Confirmation dialogs required before execution
+
+### System Settings Tab
+- Toggle switches for common Windows system settings
+- Real-time state detection and immediate application of changes
+- Settings include dark mode, hidden files, clipboard history, and more
+- Automatic detection of current system state on application launch
+
 ### About Tab
-- Version: Beta 1.0.0.0
+- **Version:** Beta 1.0.0.1
 - Author: CavemanTechandGamming
 - License: MIT
 - Support/updates: [https://github.com/CavemanTechandGamming/Mainstall](https://github.com/CavemanTechandGamming/Mainstall)
@@ -133,7 +154,7 @@ This is the recommended method for most users. The executable is pre-built, thor
 
 2. Build the executable:
    ```bash
-   pyinstaller mainstall.spec
+   pyinstaller --noconfirm --onefile --windowed --icon=assets\\mainstall.ico --add-data "assets;assets" --name "Mainstall_Beta_1.0.0.1" mainstall.py
    ```
 
 3. The executable will be created in the `dist/` folder
@@ -148,7 +169,7 @@ This is the recommended method for most users. The executable is pre-built, thor
 
 ### Maintenance Operations
 1. Navigate to the "Maintenance" tab
-2. Select individual maintenance tasks or use "Run All Maintenance"
+2. Select individual maintenance tasks
 3. Each command opens in a separate PowerShell window for complete visibility
 4. Commands execute with `-NoExit` flag to maintain window visibility
 
@@ -159,6 +180,42 @@ This is the recommended method for most users. The executable is pre-built, thor
 4. Select the desired software for installation
 5. Confirm the installation prompt
 6. Installation proceeds silently in the background via winget
+
+### Quick Fixes
+1. Navigate to the "Quick Fixes" tab
+2. Select the desired troubleshooting command
+3. Confirm the action in the dialog box
+4. Command executes in a visible PowerShell window
+5. Window remains open to show command output and results
+
+**Available Quick Fixes:**
+- **Flush DNS Cache**: Clear DNS resolver cache for network connectivity issues
+- **Restart Windows Explorer**: Restart Explorer to fix UI issues and freezes
+- **Clear Microsoft Store Cache**: Clear Store cache to fix download issues
+- **Kill High-CPU Background Tasks**: Terminate processes using >30% CPU
+- **Clear Clipboard**: Clear Windows clipboard to free memory
+- **Clear Temp Files**: Remove temporary files to free disk space
+- **Reset Windows Update**: Reset Update services and clear cache
+- **Fix Windows Search**: Reset Windows Search functionality
+- **Clear Print Queue**: Clear print queue and restart spooler
+- **Restart Network Adapter**: Restart all network adapters
+- **Fix Store Apps**: Re-register all Microsoft Store apps
+
+### System Settings
+1. Navigate to the "System Settings" tab
+2. Toggle switches reflect current system state automatically
+3. Click any toggle to change the setting immediately
+4. Confirmation message appears after successful changes
+5. Some settings may require a system restart to take effect
+
+**Available System Settings:**
+- **Dark Mode for Apps**: Enable/disable dark mode for Windows applications
+- **Show Hidden Files**: Show/hide hidden files and folders in File Explorer
+- **Clipboard History**: Enable/disable clipboard history (Windows + V)
+- **Show File Extensions**: Show/hide file extensions in File Explorer
+- **Disable Background Apps**: Enable/disable background app execution
+- **Disable Lock Screen**: Enable/disable Windows lock screen
+- **Disable Startup Delay**: Enable/disable startup delay for faster boot
 
 ## Technical Information
 
@@ -177,6 +234,7 @@ This is the recommended method for most users. The executable is pre-built, thor
 ## Command Reference
 
 ### Maintenance Commands
+- `Checkpoint-Computer -Description 'Mainstall Restore Point' -RestorePointType 'MODIFY_SETTINGS'`: Create a Windows System Restore Point
 - `winget upgrade --all`: Updates all winget packages
 - `sfc /scannow`: System File Checker scan
 - `DISM /Online /Cleanup-Image /ScanHealth`: DISM health scan
@@ -288,3 +346,90 @@ For issues, feature requests, or questions:
 If you find any bugs, issues, or have suggestions, **please don't hesitate to submit a ticket or open an issue on the project's GitHub page**: [https://github.com/CavemanTechandGamming/Mainstall](https://github.com/CavemanTechandGamming/Mainstall)
 
 Your feedback helps make Mainstall better for everyone!
+
+## Changelog
+
+### Beta 1.0.0.1 - Major UI/UX Overhaul & Feature Enhancement
+**Release Date:** December 2024
+
+#### 🎨 **Major UI/UX Improvements**
+- **Complete Tab System Redesign**: Transformed from 2-tab to 5-tab interface for better organization
+  - Maintenance Tab: System maintenance and repair tools
+  - Installers Tab: Software installation with 80+ applications
+  - Quick Fixes Tab: Common troubleshooting commands
+  - System Settings Tab: Toggle switches for Windows settings
+  - About Tab: Professional app information and branding
+- **Professional Subheadings**: Added descriptive subtitles to all tabs for clarity
+- **Enhanced Visual Design**: Improved spacing, typography, and layout consistency
+- **Better Button Organization**: Two-column layouts with uniform sizing and spacing
+- **Comprehensive Tooltip System**: Detailed descriptions for all buttons with intelligent positioning
+
+#### 🆕 **New Features & Functionality**
+- **Quick Fixes Tab**: 14 new troubleshooting commands for common Windows issues
+  - DNS cache flush, Windows Explorer restart, Store cache clear
+  - High-CPU process termination, temp file cleanup, Windows Update reset
+  - Print queue management, network adapter restart, Store app repair
+- **System Settings Tab**: 7 toggle switches for common Windows configurations
+  - Dark mode for apps, hidden files visibility, clipboard history
+  - File extensions display, background apps control, lock screen settings
+  - Startup delay management with real-time state detection
+- **Enhanced About Tab**: Professional branding with logo, version info, and GitHub integration
+- **Universal Mouse Wheel Scrolling**: Smooth scrolling support across all tabs
+
+#### 🔧 **Technical Improvements**
+- **Comprehensive Code Documentation**: Added detailed docstrings and inline comments throughout
+- **Enhanced Error Handling**: Improved error messages and fallback mechanisms
+- **Security Enhancements**: Strengthened command validation and injection prevention
+- **Asset Management**: Proper icon and image loading with fallback options
+- **Build System**: Improved PyInstaller configuration and build scripts
+- **Code Quality**: Fixed indentation issues and improved code structure
+
+#### 📦 **Software Installation Enhancements**
+- **Expanded Software Library**: Increased from basic installers to 80+ applications
+- **Categorized Organization**: 9 categories (Development, File Management, Gaming, Graphics, Network, Office, Security, System Monitoring, Backup & Imaging)
+- **Alphabetical Sorting**: All categories and applications sorted alphabetically
+- **Detailed Tooltips**: Comprehensive descriptions for each application (300+ word descriptions)
+- **Professional Presentation**: Category headers with icons and visual separators
+
+#### 🛠 **Maintenance & Quick Fixes**
+- **Enhanced Maintenance Tools**: Improved existing maintenance commands with better descriptions
+- **New Quick Fix Commands**: Added 14 troubleshooting commands for common issues
+- **Better Command Organization**: Logical grouping and improved tooltips
+- **Confirmation Dialogs**: Enhanced user confirmation with detailed information
+
+#### 🎯 **User Experience Improvements**
+- **Professional Screenshots**: Added comprehensive screenshots for all tabs
+- **Updated Documentation**: Complete README overhaul with detailed usage instructions
+- **Better Error Messages**: More informative error dialogs and troubleshooting guidance
+- **Consistent Styling**: Unified dark theme with high contrast for accessibility
+- **Responsive Design**: Better handling of different screen sizes and resolutions
+
+#### 🔒 **Security & Stability**
+- **Command Validation**: Enhanced security checks for all PowerShell commands
+- **Input Sanitization**: Improved protection against command injection
+- **Error Logging**: Added error logging for debugging and troubleshooting
+- **Graceful Degradation**: Fallback options when assets or features are unavailable
+
+#### 📋 **Documentation & Support**
+- **Comprehensive README**: Complete rewrite with detailed feature descriptions
+- **Usage Guides**: Step-by-step instructions for all features
+- **Troubleshooting Section**: Common issues and solutions
+- **Technical Information**: Build specifications and development details
+- **Screenshot Gallery**: Visual documentation of all application features
+
+#### 🏗 **Development & Build Improvements**
+- **Professional Build Scripts**: Enhanced PowerShell build script with error handling
+- **Asset Inclusion**: Proper handling of icons, images, and resources in builds
+- **Version Management**: Clear version numbering and changelog tracking
+- **Code Organization**: Modular design with separate methods for each functionality
+
+#### 🎨 **Visual & Branding Enhancements**
+- **Custom Application Icon**: Professional icon with multiple resolutions
+- **About Page Redesign**: Logo integration, version display, and GitHub links
+- **Consistent Theming**: Unified dark theme across all interface elements
+- **Professional Typography**: Improved fonts and text styling throughout
+
+---
+
+### Previous Releases
+- **Initial Release**: Basic 2-tab interface with maintenance and installer functionality
