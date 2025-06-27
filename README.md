@@ -2,6 +2,19 @@
 
 A professional-grade Windows desktop application for system maintenance and software installation. Mainstall provides an intuitive GUI interface for common Windows maintenance tasks and software installation using winget.
 
+## ⚠️ Important Disclaimer
+
+**This application requires administrator privileges and performs system-level operations. Use at your own risk.**
+
+- **System Changes**: This application executes commands that modify your Windows system, including file system operations, registry changes, and software installations.
+- **Administrator Access**: The application requires and requests administrator privileges to function properly.
+- **No Warranty**: This software is provided "as is" without any warranty. The authors are not responsible for any damage to your system.
+- **Backup Recommendation**: It is strongly recommended to create a system restore point or backup before using maintenance features.
+- **User Responsibility**: Users are responsible for understanding the commands being executed and their potential impact on their system.
+- **Testing**: Test the application in a safe environment before using it on production systems.
+
+By using this application, you acknowledge that you understand these risks and accept responsibility for any consequences.
+
 ## Features
 
 ### 🔐 Administrator Privileges
@@ -58,46 +71,56 @@ A professional-grade Windows desktop application for system maintenance and soft
 ### Installers Tab
 ![Mainstall Installers Tab](./assets/screenshot_installers.png)
 
-## Tabs
+## Application Overview
 
-### Maintenance
-- Run system maintenance and repair commands (SFC, DISM, chkdsk, etc.)
-- Each action opens a PowerShell window for transparency
-- Confirmation required before any maintenance task runs
+### Maintenance Tab
+- Execute system maintenance and repair commands (SFC, DISM, chkdsk, etc.)
+- Each action opens a PowerShell window for complete transparency
+- Confirmation dialogs required before any maintenance task execution
 
-### Installers
-- Install popular software with a single click
-- Categories: Browsers, Development, File Management, Gaming, Graphics, Network, Office, Security, System Utilities
-- Uses winget for silent, official installs
-- Tooltips provide detailed info for each app
+### Installers Tab
+- Install popular software applications with a single click
+- Organized categories: Browsers, Development, File Management, Gaming, Graphics, Network, Office, Security, System Utilities
+- Utilizes winget for silent, official software installations
+- Comprehensive tooltips provide detailed information for each application
 
-### About
+### About Tab
 - Version: Beta 1.0.0.0
 - Author: CavemanTechandGamming
 - License: MIT
 - Support/updates: [https://github.com/CavemanTechandGamming/Mainstall](https://github.com/CavemanTechandGamming/Mainstall)
 
-## Requirements
+## System Requirements
 
 - Windows 10/11
-- Python 3.7 or higher (for development)
+- Python 3.7 or higher (for development only)
 - Administrator privileges (automatically requested)
 
 ## Installation
 
-### Option 1: Run from Source
+### 🎯 **Recommended: Download Pre-built Executable**
+
+**Get the latest release:** [Download Mainstall.exe](https://github.com/CavemanTechandGamming/Mainstall/releases)
+
+1. Download the latest release from the [releases page](https://github.com/CavemanTechandGamming/Mainstall/releases)
+2. Extract the ZIP file to your desired location
+3. Run `Mainstall.exe` (administrator privileges will be automatically requested)
+
+This is the recommended method for most users. The executable is pre-built, thoroughly tested, and requires no additional setup or dependencies.
+
+### Option 2: Run from Source
 
 1. Clone or download this repository
-2. Install Python dependencies (none required - uses standard library)
+2. Ensure Python 3.7+ is installed (no additional dependencies required)
 3. Run the application:
    ```bash
    python mainstall.py
    ```
 
-### Option 2: Build Executable (Recommended)
+### Option 3: Build Executable Locally
 
 #### Quick Build
-1. Run the PowerShell build script:
+1. Execute the PowerShell build script:
    ```powershell
    .\build.ps1
    ```
@@ -115,48 +138,43 @@ A professional-grade Windows desktop application for system maintenance and soft
 
 3. The executable will be created in the `dist/` folder
 
-### Option 3: Run Existing Executable
-
-1. Download the latest release
-2. Extract the ZIP file
-3. Run `Mainstall.exe` (will request admin privileges)
-
-## Usage
+## Usage Guide
 
 ### Starting the Application
-1. Run `mainstall.py`, `Mainstall.exe`, or use `run_mainstall.bat`
-2. The application will automatically request administrator privileges
-3. Accept the UAC prompt to continue
+1. **Recommended**: Run `Mainstall.exe` from the downloaded release
+2. **Alternative**: Run `mainstall.py` or use `run_mainstall.bat`
+3. The application will automatically request administrator privileges
+4. Accept the UAC prompt to continue
 
 ### Maintenance Operations
-1. Click on the "Maintenance" tab
-2. Choose individual maintenance tasks or use "Run All Maintenance"
-3. Each command opens in a separate PowerShell window for visibility
-4. Commands execute with `-NoExit` flag to keep windows open
+1. Navigate to the "Maintenance" tab
+2. Select individual maintenance tasks or use "Run All Maintenance"
+3. Each command opens in a separate PowerShell window for complete visibility
+4. Commands execute with `-NoExit` flag to maintain window visibility
 
 ### Software Installation
-1. Click on the "Installers" tab
-2. Browse categories or use the search functionality
-3. Hover over buttons for detailed tooltips
-4. Select the software you want to install
+1. Navigate to the "Installers" tab
+2. Browse categories or utilize the search functionality
+3. Hover over buttons for detailed application information
+4. Select the desired software for installation
 5. Confirm the installation prompt
-6. Installation runs silently in the background via winget
+6. Installation proceeds silently in the background via winget
 
-## Build Information
+## Technical Information
 
-### Executable Details
+### Executable Specifications
 - **File**: `dist/Mainstall.exe`
-- **Size**: ~10MB
+- **Size**: Approximately 10MB
 - **Icon**: Custom icon with multiple resolutions
 - **UAC**: Requests administrator privileges
-- **Console**: No console window (GUI only)
+- **Console**: No console window (GUI-only application)
 
 ### Build Scripts
-- `build.ps1`: PowerShell build script with error handling
-- `run_mainstall.bat`: Batch file to launch the executable
+- `build.ps1`: PowerShell build script with comprehensive error handling
+- `run_mainstall.bat`: Batch file for executable launching
 - `mainstall.spec`: PyInstaller configuration file
 
-## Command Details
+## Command Reference
 
 ### Maintenance Commands
 - `winget upgrade --all`: Updates all winget packages
@@ -172,7 +190,7 @@ A professional-grade Windows desktop application for system maintenance and soft
 - `Remove-Item "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue`
 
 ### Software Installation
-All software installations use: `winget install -e --id <APP_ID> --silent`
+All software installations utilize: `winget install -e --id <APP_ID> --silent`
 
 ## Development
 
@@ -194,16 +212,15 @@ Mainstall/
 ```
 
 ### Code Features
-- Well-commented, clean Python code
-- Type hints for better code clarity
-- Error handling and user feedback
+- Well-commented, clean Python code with comprehensive documentation
+- Type hints for enhanced code clarity and maintainability
+- Robust error handling and user feedback mechanisms
 - Modular design with separate methods for each functionality
-- Professional GUI with dark theme
-- Comprehensive tooltip system
-- Smart tooltip positioning
-- Universal mouse wheel scrolling
+- Professional GUI with modern dark theme
+- Comprehensive tooltip system with intelligent positioning
+- Universal mouse wheel scrolling support
 
-### Customization
+### Customization Options
 - Add new maintenance commands in the `maintenance_buttons` list
 - Add new software in the `software_categories` dictionary with appropriate winget IDs
 - Modify the dark theme colors in the `setup_styles()` method
@@ -216,20 +233,21 @@ Mainstall/
 
 1. **UAC Prompt Not Appearing**
    - Ensure you're running the application as intended
-   - Check Windows security settings
+   - Check Windows security settings and UAC configuration
 
 2. **Commands Not Executing**
-   - Verify administrator privileges
+   - Verify administrator privileges are granted
    - Check if PowerShell execution policy allows script execution
-   - Ensure winget is installed and accessible
+   - Ensure winget is installed and accessible in the system PATH
 
 3. **GUI Not Displaying Properly**
    - Verify Python and tkinter are properly installed
    - Check display scaling settings on high-DPI displays
+   - Ensure proper graphics drivers are installed
 
 4. **Build Failures**
    - Ensure PyInstaller is installed: `pip install pyinstaller`
-   - Check that all required files exist
+   - Check that all required files exist in the project directory
    - Run the build script: `.\build.ps1`
 
 ### PowerShell Execution Policy
@@ -240,12 +258,11 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ## Security Considerations
 
-- The application requires administrator privileges for system maintenance
-- All commands are executed in separate PowerShell windows for transparency
-- No commands are executed silently without user confirmation
-- Software installations use official winget packages
-- Input validation and command sanitization implemented
-- Security checks prevent command injection
+- The application requires administrator privileges for system maintenance operations
+- All commands are executed in separate PowerShell windows for complete transparency
+- No commands are executed silently without explicit user confirmation
+- Comprehensive input validation and sanitization implemented
+- Command injection prevention measures in place
 
 ## License
 
@@ -271,7 +288,3 @@ For issues, feature requests, or questions:
 If you find any bugs, issues, or have suggestions, **please don't hesitate to submit a ticket or open an issue on the project's GitHub page**: [https://github.com/CavemanTechandGamming/Mainstall](https://github.com/CavemanTechandGamming/Mainstall)
 
 Your feedback helps make Mainstall better for everyone!
-
----
-
-**Note:** This application performs system-level operations. Always ensure you have backups before running maintenance operations, and understand the implications of each command before execution. 
